@@ -1,1 +1,112 @@
+//bubble sort
+
+#include <stdio.h>
+
+void bubbleSort(int arr[], int num) {
+    int x, y, temp;
+    for (x = 0; x < num - 1; x++) {
+        for (y = 0; y < num - x - 1; y++) {
+            if (arr[y] > arr[y + 1]) {
+                temp = arr[y];
+                arr[y] = arr[y + 1];
+                arr[y + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[50], n, x;
+    printf(" Enter the Number of Elements you want in the array: ");
+    scanf("%d", &n);
+    printf("Please Enter the Value of Elements: ");
+    for (x = 0; x < n; x++)
+        scanf("%d", &arr[x]);
+    bubbleSort(arr, n);
+    printf("Array after implementing bubble sort: ");
+    for (x = 0; x < n; x++) {
+        printf("%d  ", arr[x]);
+    }
+    return 0;
+}
+
+//quicksort
+
+#include <stdio.h>
+
+void quicksort(int number[25], int first, int last) {
+    int i, j, pivot, t;
+    if (first < last) {
+        pivot = first;
+        i = first;
+        j = last;
+        while (i < j) {
+            while (number[i] <= number[pivot])
+                i++;
+            while (number[j] > number[pivot])
+                j--;
+            if (i < j) {
+                t = number[i];
+                number[i] = number[j];
+                number[j] = t;
+            }
+        }
+        t = number[pivot];
+        number[pivot] = number[j];
+        number[j] = t;
+        quicksort(number, first, j - 1);
+        quicksort(number, j + 1, last);
+    }
+}
+
+int main() {
+    int i, c, number[25];
+    printf("How many elements are you going to enter?: ");
+    scanf("%d", &c);
+    printf("Enter %d elements: ", c);
+    for (i = 0; i < c; i++)
+        scanf("%d", &number[i]);
+    quicksort(number, 0, c - 1);
+    printf("Order of Sorted elements: ");
+    for (i = 0; i < c; i++)
+        printf(" %d", number[i]);
+    printf("\n");
+    return 0;
+     }
+
+//insertion sort
+
+#include <stdio.h>
+void insertionSort(int array[], int n) {
+    for (int step = 1; step < n; step++) {
+        int key = array[step];
+        int j = step - 1;
+
+        while (j >= 0 && key < array[j]) {
+            array[j + 1] = array[j];
+            j = j - 1;
+        }
+
+        array[j + 1] = key;
+    }
+}
+int main() {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int data[n];
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &data[i]);
+    }
+
+    insertionSort(data, n);
+
+    printf("Sorted Array in Ascending Order: \n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", data[i]);
+    }
+    printf("\n");
+}
 
